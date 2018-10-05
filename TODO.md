@@ -1,5 +1,5 @@
 ### Create API server
-- [ ] Write a barebones go-chi server
+- [x] Write a barebones go-chi server
 - [ ] Create a go script that will run a git pull
 - [ ] Design a good way to put those two things together
 

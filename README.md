@@ -1,8 +1,8 @@
 # Pierogi
-Miniature single server CI/CD
+A miniature CI/CD server written in Go
 
 ## Goals
-Pierogi is meant to be a fast, stateless, lightweight CI/CD solution for small projects running on a single server.
+Pierogi is meant to be a fast, stateless, lightweight CI/CD solution for small, self-hosted projects.
 
 Both incoming job trigger api calls and outgoing logging/results output format and endpoints will be entirely configurable, allowing the user control over how they want to trigger their jobs, build their jobs, and how they want to output job results.
 
