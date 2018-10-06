@@ -1,7 +1,12 @@
 ### Create API server
 - [x] Write a barebones go-chi server
-- [ ] Create a go script that will run a git pull
-- [ ] Design a good way to put those two things together
+- [x] Get server to read in local json files
+- [ ] Figure out how interfaces work in Go
+- [ ] Write a generic webhook interface
+- [ ] Implement an interface in the github plugin
+
+### Get API server doing CI things
+- [~] These items are going to come out of "Design CI things"
 
 ### Dogfood Pierogi
 - [ ] Set this up on my server
@@ -12,5 +17,10 @@
 - [ ] Write go script that will deploy my jekyll website
 - [ ] Hook above script up to github webhook from 2.b
 
-### Set up callbacks[wc?]
+---
+
+# Extras
+- pull request event handling
+
+### Output Configuration
 - [ ] Set up callback to github to report job status when build is triggered

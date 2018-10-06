@@ -1,0 +1,17 @@
+{
+  "/": {
+    "plugin": "github",
+    "handlers": [
+      {
+        "name": "production",
+        "repository": "https://github.com/aduyko/website",
+        "branch": "master"
+      },
+      {
+        "name": "development",
+        "repository": "https://github.com/aduyko/website",
+        "branch": "development"
+      }
+    ]
+  }
+}
