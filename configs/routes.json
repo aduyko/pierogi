@@ -4,12 +4,13 @@
     "handlers": [
       {
         "name": "production",
-        "repository": "https://github.com/aduyko/website",
-        "branch": "master"
+        "repository": "https://github.com/aduyko/pierogi",
+        "branch": "master",
+        "script": "/Users/andriyduyko/go/src/github.com/aduyko/pierogi/cool.sh"
       },
       {
         "name": "development",
-        "repository": "https://github.com/aduyko/website",
+        "repository": "https://github.com/aduyko/pierogi",
         "branch": "development"
       }
     ]

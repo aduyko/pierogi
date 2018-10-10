@@ -7,15 +7,21 @@ import (
   "io/ioutil"
   "net/http"
   "os/exec"
+
+  //"github.com/aduyko/pierogi/internal"
 )
 
 func main() {
   r := chi.NewRouter()
 
+  routes, err := readRoutes()
+  fmt.Println(routes)
+  fmt.Println(err)
+
   // Read in config files
   // Set up routes based on those configs
   {
-    // r.Post
+    // r.Post("/", githubHandler) 
   }
 
   {
@@ -25,6 +31,43 @@ func main() {
   }
 
   http.ListenAndServe(":3000", r)
+}
+
+
+
+func readRoutes() (map[string]interface{}, error) {
+  {
+    content, err := ioutil.ReadFile("configs/routes.json")
+
+    // parse json into arbitrary map
+    var routeConfig map[string]interface{}
+    err = json.Unmarshal(content, &routeConfig)
+
+		for key, val := range routeConfig {
+			fmt.Println(key, val)
+		}
+
+/*
+		if rec, ok := routeConfig["routes"].([]interface{}); ok {
+        for _, val := range rec {
+            fmt.Printf(" [========>] %s", val)
+        }
+    } else {
+        fmt.Printf("record not a map[string]interface{}: %v\n", routeConfig)
+    }
+
+    m := routeConfig["routes"].(map[string]interface{})
+
+    fmt.Println(routeConfig["routes"])
+    fmt.Println(m)
+    for _, element := range routeConfig["routes"] {
+      r,err := routes.NewRoute(element)
+      fmt.Println(r)
+    }
+*/
+
+    return routeConfig, err
+  }
 }
 
 // TODO: Delete this test function

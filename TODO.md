@@ -1,7 +1,8 @@
 ### Create API server
 - [x] Write a barebones go-chi server
 - [x] Get server to read in local json files
-- [ ] Figure out how interfaces work in Go
+- [~] Figure out how interfaces work in Go
+- [~] Create routes from config file
 - [ ] Write a generic webhook interface
 - [ ] Implement an interface in the github plugin
 
