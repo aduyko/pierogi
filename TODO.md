@@ -1,7 +1,13 @@
 ### Create API server
-- [ ] Write a barebones go-chi server
-- [ ] Create a go script that will run a git pull
-- [ ] Design a good way to put those two things together
+- [x] Write a barebones roda server
+- [x] Get server to run a local script
+- [x] Get server to decode json payload
+- [ ] Get server to run a local script based on json payload
+- [ ] Get server to run a local script based on github json payload
+
+### Routes
+- [ ] Get server to read in local json files
+- [ ] Create routes from config file
 
 ### Dogfood Pierogi
 - [ ] Set this up on my server
@@ -9,8 +15,14 @@
 - [ ] Set pierogi up to properly ingest github webhook and run the git pull go script from 1.b
 
 ### Set pierogi up for my website
-- [ ] Write go script that will deploy my jekyll website
+- [ ] Write script that will deploy my jekyll website
 - [ ] Hook above script up to github webhook from 2.b
 
-### Set up callbacks[wc?]
+---
+
+# Extras
+- post content-type other than json
+- pull request event handling
+
+### Output Reporters
 - [ ] Set up callback to github to report job status when build is triggered
