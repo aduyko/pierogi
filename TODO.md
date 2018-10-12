@@ -2,8 +2,11 @@
 - [x] Write a barebones roda server
 - [x] Get server to run a local script
 - [x] Get server to decode json payload
-- [ ] Get server to run a local script based on json payload
+- [x] Get server to run a local script based on json payload
 - [ ] Get server to run a local script based on github json payload
+
+### Logging
+- [ ] Set up file logger
 
 ### Routes
 - [ ] Get server to read in local json files

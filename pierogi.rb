@@ -1,4 +1,6 @@
 require "roda"
+require "open3"
+require_relative "cfg/config.rb"
 
 class Pierogi < Roda
   plugin :slash_path_empty
@@ -9,32 +11,52 @@ class Pierogi < Roda
       r.post do
         # r.params is a map, json is parsed automatically by the json_parser plugin
         # if our request is content type application/json
-        handle_request(r.params)
+        err = handle_request(r.params)
+        # TODO: Should be json responses (status: ok) or whatever
+        if err.nil?
+          "Script executed!"
+        else
+          response.status = 400
+          "Error: #{err}"
+        end
       end
     end
 
     r.on "test" do
-      r.is "foo" do
-        r.get do
-          output = `/Users/andriyduyko/ruby/pierogi/foo.sh`
-          success = $?.success?
-          puts "script returned '#{output}'"
-          puts "script success`: #{success}"
-          "script returned #{output}"
-        end
-      end
-
-      r.post do
-        "Goodbye World\n"
+      r.get do
+        "Hello World\n"
       end
     end
   end
 end
 
 def handle_request(params)
-  params.each do |key, value|
-    puts "key #{key}"
-    puts "value #{value}"
+  if params.has_key? "script"
+    execute_script(params["script"])
+  else
+    "No 'script' key found in request json"
   end
-  "Hello"
+end
+
+def execute_script(script)
+  begin
+    puts "START: Attempting to execute script #{SCRIPTS_PATH}/#{script}"
+    stdin, stdout, wait_thr = Open3.popen2e("#{SCRIPTS_PATH}/#{script}")
+    stdin.close
+    puts stdout.gets(nil)
+    stdout.close
+    exit_code = wait_thr.value
+    puts exit_code.exitstatus
+    puts exit_code
+    if exit_code.success?
+      puts "END: Script execution succeeded"
+      nil
+    else
+      "Script Execution Failed"
+    end
+  rescue Exception => e
+    err = "#{e.class}, #{e.message}"
+    puts "END: Error: #{err}"
+    err
+  end
 end
