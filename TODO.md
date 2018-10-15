@@ -3,19 +3,22 @@
 - [x] Get server to run a local script
 - [x] Get server to decode json payload
 - [x] Get server to run a local script based on json payload
-- [ ] Get server to run a local script based on github json payload
-
-### Logging
-- [ ] Set up file logger
+- [x] Get server to run a local script based on github json payload
 
 ### Routes
 - [ ] Get server to read in local json files
 - [ ] Create routes from config file
 
+### Handlers
+- [ ] Create handlers based on config file routes
+
 ### Dogfood Pierogi
 - [ ] Set this up on my server
 - [ ] Configure github webhook for pierogi repo to send information to pierogi
 - [ ] Set pierogi up to properly ingest github webhook and run the git pull go script from 1.b
+
+### Logging
+- [ ] Set up file logger
 
 ### Set pierogi up for my website
 - [ ] Write script that will deploy my jekyll website
