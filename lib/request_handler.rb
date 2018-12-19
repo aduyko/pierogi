@@ -1,4 +1,5 @@
-require_relative "../config/environment.rb"
+require "open3"
+require_relative "../config/config.rb"
 
 class RequestHandler
 
@@ -14,13 +15,12 @@ class RequestHandler
 
   def execute_script(script)
     begin
-      puts "START: Attempting to execute script #{SCRIPTS_PATH}/#{script}"
-      stdin, stdout, wait_thr = Open3.popen2e("#{SCRIPTS_PATH}/#{script}")
+      puts "START: Attempting to execute script #{script}"
+      stdin, stdout, wait_thr = Open3.popen2e("#{script}")
       stdin.close
       puts stdout.gets(nil)
       stdout.close
       exit_code = wait_thr.value
-      puts exit_code.exitstatus
       puts exit_code
       if exit_code.success?
         puts "END: Script execution succeeded"

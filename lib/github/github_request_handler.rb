@@ -2,21 +2,21 @@ require_relative "../request_handler.rb"
 
 class GithubRequestHandler < RequestHandler
   # input data format:
-  # repo:
+  # repositories:
+  #   #{repo_name}:
   #   - branch: #{branch}
   #     script: #{script}
   #   - branch: #{branch}
   #     script: #{script}
-
-  # format input data like so:
-  # repo:
-  #   branch: script
-  #   branch: script
-  def initialize(data)
+  def initialize(handler_config)
+    if handler_config["repositories"].nil?
+      raise "No repositories defined for github handler with data #{JSON.pretty_generate(data)}"
+    end
+    data = handler_config["repositories"]
     @repositories = Hash.new
     puts "SETUP: Initializing Github Request Handler with Data: #{JSON.pretty_generate(data)}"
     data.each do |repo_name, branches|
-      @repositories["#{repo_name}"] = Hash.new 
+      @repositories["#{repo_name}"] = Hash.new
       branches.each do |branch_map|
         @repositories[repo_name][branch_map["branch"]] = branch_map["script"]
       end

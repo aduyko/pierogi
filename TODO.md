@@ -8,11 +8,16 @@
 ### Handlers
 - [x] Create handler super class
 - [x] Create github handler and move github script execution logic in there
-- [ ] Create handlers based on config file routes
+- [x] Create handlers based on config file routes
+
+### Configuration
+- [x] Create configuration file format / read it in
+- [ ] Figure out a place for the default configuration file to live and use that
+- [ ] Figure out how to manage secrets within this configuration file
 
 ### Routes
 - [x] Get server to read in local json files
-- [ ] Create routes from config file
+- [x] Create routes from config file
 
 ### Testing
 - [ ] Add rspec tests
