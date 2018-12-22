@@ -1,21 +1,24 @@
-require_relative "../request_handler.rb"
+require_relative "request_handler.rb"
+require "JSON"
 
 class GithubRequestHandler < RequestHandler
   # input data format:
-  # repositories:
-  #   #{repo_name}:
-  #   - branch: #{branch}
-  #     script: #{script}
-  #   - branch: #{branch}
-  #     script: #{script}
+  # repositories: {
+  #   #{repo_name}: [
+  #     {
+  #       branch: #{branch}
+  #       script: #{script}
+  #     },
+  #     {
+  #       branch: #{branch}
+  #       script: #{script}
   def initialize(handler_config)
     if handler_config["repositories"].nil?
-      raise "No repositories defined for github handler with data #{JSON.pretty_generate(data)}"
+      raise "No repositories defined for github handler with data #{JSON.pretty_generate(handler_config)}"
     end
-    data = handler_config["repositories"]
     @repositories = Hash.new
-    puts "SETUP: Initializing Github Request Handler with Data: #{JSON.pretty_generate(data)}"
-    data.each do |repo_name, branches|
+    puts "SETUP: Initializing Github Request Handler with Data: #{JSON.pretty_generate(handler_config['repositories'])}"
+    handler_config["repositories"].each do |repo_name, branches|
       @repositories["#{repo_name}"] = Hash.new
       branches.each do |branch_map|
         @repositories[repo_name][branch_map["branch"]] = branch_map["script"]
@@ -33,17 +36,14 @@ class GithubRequestHandler < RequestHandler
       branch = params["ref"].split("/")[-1]
       script = @repositories[repo_name][branch]
       if branch.nil?
-        puts "ERROR: No branch matching #{branch} found in request json"
         "No branch matching #{branch} found in request json"
       elsif script.nil?
-        puts "ERROR: No script found for branch #{branch} in configuration"
         "No script found for branch #{branch} in configuration"
       else
         puts "Attempting to run script '#{script}' for branch '#{branch}'"
         self.execute_script(script)
       end
     else
-        puts "ERROR: No valid 'repository' key found in request json"
         "No valid 'repository' key found in request json"
     end
   end

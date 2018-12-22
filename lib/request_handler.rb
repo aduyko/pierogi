@@ -1,16 +1,12 @@
 require "open3"
 require_relative "../config/config.rb"
 
+# This class should not be implemented!!
 class RequestHandler
-
   # TODO: Create a handler class that does this
   # TODO: This might be a bad idea in the generic RequestHandler
-  def handle_request(params)
-    if params.has_key? "script"
-      self.execute_script(params["script"])
-    else
-      "No 'script' key found in request json"
-    end
+  def handle_request()
+    "No handle_request function exists for class #{self.class.name}"
   end
 
   def execute_script(script)

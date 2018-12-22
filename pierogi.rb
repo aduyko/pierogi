@@ -1,7 +1,7 @@
 require "roda"
 require "json"
 require_relative "config/config.rb"
-require_relative "lib/github/github_request_handler.rb"
+require_relative "lib/github_request_handler.rb"
 
 class Pierogi < Roda
   plugin :slash_path_empty
@@ -18,11 +18,9 @@ class Pierogi < Roda
     if config["handler_config"].nil?
       raise "No handler configuration defined for route #{route}"
     end
-    if handlers[route].nil?
-      class_name = "#{config["handler"].capitalize}RequestHandler"
-      klass = Object.const_get(class_name)
-      handlers[route] = klass.new(config["handler_config"])
-    end
+    class_name = "#{config["handler"].capitalize}RequestHandler"
+    klass = Object.const_get(class_name)
+    handlers[route] = klass.new(config["handler_config"])
   end
 
   route do |r|
@@ -35,7 +33,7 @@ class Pierogi < Roda
 
           # TODO: Should be json responses (status: ok) or whatever
           if err.nil?
-            "Script executed!"
+            "Request Handled!"
           else
             response.status = 400
             "Error: #{err}"
