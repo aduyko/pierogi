@@ -1,6 +1,14 @@
 # Pierogi
 A miniature CI/CD server written in Ruby
 
+## Installation
+- Clone this github repo (`git clone git@github.com:aduyko/pierogi.git`)
+- Run `bundle install` to install gems
+- More to come
+
+## Tests
+After installing, run `bundle exec rspec`
+
 ## Goals
 Pierogi is meant to be a fast, stateless, lightweight CI/CD solution for small, self-hosted projects.
 

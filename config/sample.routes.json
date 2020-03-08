@@ -1,13 +1,15 @@
 {
-  "/": {
+  "PATH": {
     "handler": "github",
-    "repositories": [
-      "repo_name": [
-        {
-          "branch": "master",
-          "script": "/etc/pierogi/sample/test.sh"
-        },
-      ]
-    ]
+    "handler_config": {
+      "repositories": {
+        "repo_name": [
+          {
+            "branch": "master",
+            "script": "/etc/pierogi/sample/test.sh"
+          },
+        ]
+      }
+    }
   }
 }

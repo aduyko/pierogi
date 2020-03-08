@@ -20,7 +20,7 @@
 - [x] Create routes from config file
 
 ### Testing
-- [ ] Add rspec tests
+- [x] Add rspec tests
 
 ### Output Handling
 - [ ] Set up helper functions for printing to stdout/response
